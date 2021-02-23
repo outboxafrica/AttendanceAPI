@@ -13,15 +13,17 @@ class RegistrationAPIView(APIView):
 
     def post(self, request, format=None):
 
-        user = Rself.request.data
-        serializer = serializer_class(data=user)
-        serializer.is_valid(raise_expection=True)
+        user = self.request.data
+        serializer = self.serializer_class(data=user)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        response_data = {
-            "username": use['usename'],
-            "email": user['email'],
-            "message": "you have succesfully  registered"
-        }
+        user_data = serializer.data
 
-        return Response(response_data, status=status.HTTP_201_CREATED)
+        # response_data = {
+        #     "username": user['usename'],
+        #     "email": user['email'],
+        #     "message": "you have succesfully  registered"
+        # }
+
+        return Response(user_data, status=status.HTTP_201_CREATED)

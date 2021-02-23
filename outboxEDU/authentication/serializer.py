@@ -19,7 +19,13 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        feilds = ["email", "username", "password"]
+        fields = ['email', 'username', 'password']
+     
+
+    def validate(self, attrs):
+        email = attrs.get('email', '')
+        username = attrs.get('username', '')
+        return attrs
 
     def create(self, validated_data):
         # Use the `create_user` method we wrote earlier to create a new user.

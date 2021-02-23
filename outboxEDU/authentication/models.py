@@ -74,7 +74,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # A timestamp representing when this object was created.
     created_at = models.DateTimeField(auto_now_add=True)
 
-    role= models.CharField()
+    role= models.CharField(max_length=255, default="LF")
 
     # A timestamp reprensenting when this object was last updated.
     updated_at = models.DateTimeField(auto_now=True)
