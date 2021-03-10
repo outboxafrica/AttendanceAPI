@@ -28,3 +28,4 @@ class TestBase(APITestCase):
     username=username,
     email=email,
     password=password)
+    
