@@ -3,7 +3,6 @@ import json
 from rest_framework.test import APITestCase, APIClient
 from ..models import User
 
-
 class TestBase(APITestCase):
   def setUp(self):
     self.client  = APIClient()
