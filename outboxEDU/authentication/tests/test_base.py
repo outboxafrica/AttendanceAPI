@@ -17,6 +17,11 @@ class TestBase(APITestCase):
         "email":"little@gmail.com",
         "password":"little33"
     }
+    self.userdata3 ={
+      "username":"little",
+      "email":"little@gmail.com",
+      "password":"li"
+    }
 
   # individualise user
   username = "jennylittle234"

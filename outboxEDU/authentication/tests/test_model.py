@@ -20,6 +20,14 @@ class ModelUserTestCase(TestBase):
 
         self.assertEqual(user.email, email.lower())
 
+    def test_create_user_with_no_passwrod(self):
+        password =" "
+        user =get_user_model().objects.create_user(
+            username=self.username,
+            email=self.email,
+            password=password
+        )
+
     def test_create_normal_user_with_no_username(self):
         with self.assertRaises(TypeError):
             user=User.objects.create_user(
@@ -35,6 +43,7 @@ class ModelUserTestCase(TestBase):
                 email=None,
                 password=self.password
             )
+
 
 # Tests super user
 class ModelUserManagerTestcase(TestBase):
@@ -77,4 +86,4 @@ class ModelUserManagerTestcase(TestBase):
                 username= self.username,
                 email=None,
                 password=self.password)
-                
+                               
