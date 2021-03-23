@@ -39,15 +39,17 @@ class RegistrationSerializer(serializers.ModelSerializer):
         username_exists = User.objects.filter(username=username)
         if username_exists.exists():
             raise serializers.ValidationError('The username already exists')
+        if not username:
+            raise serializers.ValidationError('Username should be provided')
         if len(username) <= 4:
             raise serializers.ValidationError(
-                "username should be longer than 4 characters")
+                "Username should be longer than 4 characters")
         if re.search(r'[\s]', username):
             raise serializers.ValidationError(
-                "username should not contain spaces")
+                "Username should not contain spaces")
         if not re.search(r'[a-zA-Z]', username):
             raise serializers.ValidationError(
-                "username should contain characters")
+                "Username should contain characters")
         return username
 
     def validate_password(self, password):
@@ -56,7 +58,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
         """
         if len(password) < 8:
             raise serializers.ValidationError(
-                "password cannot be less than 8 characters")
+                "Password cannot be less than 8 characters")
+        if not password:
+            raise serializers.ValidationError(
+                "Password should not be left blank")
         if re.search(r'[\s]', password):
             raise serializers.ValidationError(
                 "Password should not contain spaces")
